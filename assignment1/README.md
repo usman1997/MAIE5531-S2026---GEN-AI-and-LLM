@@ -7,7 +7,7 @@
 This repository contains the starter code and tooling for Assignment 1. You will:
 - Build a small-scale data preprocessing pipeline over a Common Crawl WARC shard dataset and a toy topic dataset for pretraining language models.
 - Implement core LLaMA2 components and pretrain a 42M‑parameter model on the BabyLM corpora.
-- Implement and run text generation (temp-rate sampling) from the language model and analyze outputs.
+- Implement and run text generation (temperature sampling) from the language model and analyze outputs.
 
 You can either use your own laptop/machine if it has GPUs or use free Google Colab ([Getting Started With Google Colab: A Beginners Guide](https://www.marqo.ai/blog/getting-started-with-google-colab-a-beginners-guide)) to perform the experiments.
 
@@ -95,7 +95,7 @@ Learning Rate
 **Note on Logging and Visualization**: The training script will automatically attempt to use [Weights & Biases (wandb)](https://wandb.ai) to log and plot training statistics, including losses, learning rates, and validation metrics. This provides beautiful real-time dashboards and automatic plot generation. However, **wandb is completely optional** - if you don't set up a wandb account or API key, the training script will gracefully skip wandb logging and continue working normally. All metrics will still be printed to the console. If you choose not to use wandb, you may need to manually create loss curve plots from the console output for your report. If you want to try using wandb, you can check [wandb quickstart](https://docs.wandb.ai/quickstart) and [Important Notes](#important-notes) for more details.
 
 ### 3. (40 points) Part 3 — Generation & analysis
-(20pts) 3.1 Implement `generate()` in `llama_training/llama.py` (greedy for `temp=0.0`, temp-rate sampling and top‑k for `temp>0`).
+(20pts) 3.1 Implement `generate()` in `llama_training/llama.py` (greedy for `temp=0.0`, temperature sampling and top‑k for `temp>0`).
 
 **Supplementary for problem 3.1: Background on different sampling methods**
 
@@ -107,7 +107,7 @@ where:
 - $z_i$ is called the logit for token $i$
 - $V$ is the vocabulary size
 
-In practice, however, we can add a temp-rate parameter $T$ to the softmax function to control the randomness of the sampling:
+In practice, however, we can add a temperature parameter $T$ to the softmax function to control the randomness of the sampling:
 
 $$P(\text{next token} = w_i) = \frac{e^{z_i/T}}{\sum_{j=1}^{V} e^{z_j/T}}$$
 
@@ -115,12 +115,12 @@ When $T<1$, then the distribution becomes sharper, and sampling is more determin
 
 Different sampling strategies in language models include:
 - **Greedy sampling** ($T \to 0$): Always pick the highest probability token
-- **temp-rate sampling** ($T > 0$): Sample from the softmax distribution, where higher $T$ increases randomness
+- **temperature sampling** ($T > 0$): Sample from the softmax distribution, where higher $T$ increases randomness
 - **Top-k sampling**: Restrict sampling to the $k$ most likely tokens before applying softmax. This is like masking the tokens outside the top $k$ most likely tokens. In class, we have learned how to do attention masking, but here the implementation should be quite similar since they are both softmax. Top-K sampling is also called nucleus sampling.
 
 
 
-(20pts) 3.2 Generate using two temp-rates `temp=0.0` and `temp=0.5` with temp-rate sampling and compare:
+(20pts) 3.2 Generate using two temperatures `temp=0.0` and `temp=0.5` with temperature sampling and compare:
   - `cd llama_training`
   - `python run_llama.py --pretrained-model-path YOUR_TRAINED_MODEL.pt --option generate`
   - By default this writes `generated-sentence-temp-0.txt` and `generated-sentence-temp-1.txt`.
@@ -128,7 +128,7 @@ Different sampling strategies in language models include:
   - https://huggingface.co/yuzhen17/llama2-42M-babylm (download the checkpoint locally and pass its path to `--pretrained-model-path`).
 - Report (paste into the PDF):
   - (10pts) Generated outputs for `temp=0.0` and `temp=0.5` from both your trained model and our provided model.
-  - (10pts) Explain which temp-rate is better and why (e.g., diversity vs. coherence).
+  - (10pts) Explain which temperature is better and why (e.g., diversity vs. coherence).
 
 
 ## Setup
@@ -247,7 +247,7 @@ Submit a zip of the codebase (only the `assignment1` directory) and a PDF report
 - Part 3: Generation
   - Command used and the checkpoint path.
   - Generated outputs (`temp=0.0` and `temp=0.5`) from both your trained model and our provided model.
-  - Your explanation of which is better and why (coherence vs. diversity; effect of temp-rate and top‑k).
+  - Your explanation of which is better and why (coherence vs. diversity; effect of temperature and top‑k).
   
 Canvas Submission Link: https://canvas.ust.hk/courses/69420/assignments/427483
 
