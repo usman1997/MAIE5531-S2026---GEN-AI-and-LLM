@@ -37,6 +37,7 @@ Honor code violations will directly cause failing the course.
 - Run `./download_data.sh` from the repo root to fetch both Common Crawl files (WARC/WET/WAT) and the BabyLM datasets.
   - `./download_data.sh` may not work. Try `bash download_data.sh`. If some of the commands do not work or generate errors, please look into the `download_data.sh` file and find the specific commands, then look for ways to resolve the issue. 
 - The script writes CC files into `data_preprocess/` and BabyLM into `llama_training/`.
+  - If everything runs correctly, in `data_preprocess/`, you will see the three files: data.warc, data.wat, and data.wet. In `llama_training/`, you will see train_100M, dev, and test folders. 
 
 ### 1. (15 points) Part 1 — Data preprocessing (data_preprocess/) 
 (10 pts) 1.1. Implement the TODOs in `data_preprocess/homework.py` (you may refer to the dataset in 1.2 below to understand what the data to be preprocessed looks like):
