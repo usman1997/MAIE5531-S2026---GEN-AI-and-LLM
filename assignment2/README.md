@@ -92,7 +92,7 @@ Learning Rate
 - Train for at least 200–1000 optimizer steps. On Colab, expect roughly 40–200 minutes depending on settings.
 - Report (paste into the PDF):
   - Training setup (GPU/CPU, effective batch size, sequence length, LR, warmup, steps).
-  - Loss curve (per‑token loss vs. updates). A screenshot from your console or wandb is fine.
+  - Loss curve (per‑token loss vs. updates) if using wandb. The final loss after training and a screenshot from your console if not using wandb.
 
 **Note on Logging and Visualization**: The training script will automatically attempt to use [Weights & Biases (wandb)](https://wandb.ai) to log and plot training statistics, including losses, learning rates, and validation metrics. This provides beautiful real-time dashboards and automatic plot generation. However, **wandb is completely optional** - if you don't set up a wandb account or API key, the training script will gracefully skip wandb logging and continue working normally. All metrics will still be printed to the console. If you choose not to use wandb, you may need to manually create loss curve plots from the console output for your report. If you want to try using wandb, you can check [wandb quickstart](https://docs.wandb.ai/quickstart) and [Important Notes](#important-notes) for more details.
 
@@ -244,7 +244,7 @@ Submit a zip of the codebase (include only the modified files, `data_preprocess/
 - Part 2: Pretraining
   - Commands (either `run_babylm.sh` or the equivalent `python` command line).
   - Training configuration (GPU/CPU, block size, batch size, micro batch size, LR, warmup, total steps/epochs).
-  - Training loss curve (per‑token loss vs. steps) and any validation curves.
+  - Training loss curve (per‑token loss vs. steps) and any validation curves if using wandb. If not using wandb show the final loss after 200 steps. 
   - Notes on stability and any changes you made to save memory or resume.
 - Part 3: Generation
   - Command used and the checkpoint path.
