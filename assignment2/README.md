@@ -10,6 +10,8 @@ This repository contains the starter code and tooling for Assignment 2. You will
 - Implement and run text generation (temperature sampling) from the language model and analyze outputs.
 
 You can either use your own laptop/machine if it has GPUs or use free Google Colab ([Getting Started With Google Colab: A Beginners Guide](https://www.marqo.ai/blog/getting-started-with-google-colab-a-beginners-guide)) to perform the experiments.
+- In fact, Part 1 Data preprocessing does not require GPU resources, so you can use your own machine to work on it.
+- Part 2 LLaMA2 pretraining and Part 3 Generation requires GPU resources. Colab is recommended. 
 
 This write-up is organized as follows:
 - [Rules](#rules) is the base rule
