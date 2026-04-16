@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Unified download script for COMP4901B Homework1
+# Unified download script
 # Downloads both Common Crawl data and BabyLM datasets
 
 echo "Starting data downloads..."
